@@ -25,3 +25,4 @@ replay_pid*
 /.idea/
 /target/
 /src/main/resources/application-local.yml
+*.DS_Store
