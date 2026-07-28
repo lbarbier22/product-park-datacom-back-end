@@ -23,4 +23,5 @@
 hs_err_pid*
 replay_pid*
 /.idea/
-CLAUDE.MD
+/target/
+/src/main/resources/application-local.yml
