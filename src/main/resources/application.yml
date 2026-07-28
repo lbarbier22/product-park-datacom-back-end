@@ -2,9 +2,9 @@ spring:
   application:
     name: datacom
   datasource:
-    url: ${DB_URL:jdbc:postgresql://localhost:5432/datacom}
-    username: ${DB_USER:postgres}
-    password: ${DB_PASSWORD:password}
+    url: ${DB_URL}
+    username: ${DB_USER}
+    password: ${DB_PASSWORD}
     driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:
@@ -12,3 +12,7 @@ spring:
     show-sql: true
 server:
   port: 8080
+datacom:
+  jwt:
+    secret: ${JWT_SECRET}
+    expiration-ms: ${JWT_EXPIRATION_MS}
