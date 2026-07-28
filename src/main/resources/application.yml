@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: datacom
+  datasource:
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/datacom}
+    username: ${DB_USER:postgres}
+    password: ${DB_PASSWORD:password}
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+server:
+  port: 8080
