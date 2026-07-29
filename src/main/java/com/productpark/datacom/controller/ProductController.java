@@ -1,5 +1,6 @@
 package com.productpark.datacom.controller;
 
+import com.productpark.datacom.dto.request.ProductRejectRequest;
 import com.productpark.datacom.dto.request.ProductStepRequest;
 import com.productpark.datacom.dto.response.ProductDetailResponse;
 import com.productpark.datacom.exception.ResourceNotFoundException;
@@ -43,6 +44,21 @@ public class ProductController {
     private User currentUser(Authentication authentication) {
         return userRepository.findByLogin(authentication.getName())
                 .orElseThrow(() -> new ResourceNotFoundException("Utilisateur introuvable"));
+    }
+
+    @PostMapping("/{id}/validate")
+    @PreAuthorize("hasRole('VALIDATOR')")
+    public ProductDetailResponse validate(@PathVariable("id") Long id) {
+        var product = productWorkflowService.validate(id);
+        return productMapper.toDetailResponse(product);
+    }
+
+    @PostMapping("/{id}/reject")
+    @PreAuthorize("hasRole('VALIDATOR')")
+    public ProductDetailResponse reject(@PathVariable("id") Long id,
+                                        @Valid @RequestBody ProductRejectRequest request) {
+        var product = productWorkflowService.reject(id, request);
+        return productMapper.toDetailResponse(product);
     }
 
 }
