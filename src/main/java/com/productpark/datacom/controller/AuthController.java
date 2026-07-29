@@ -19,12 +19,4 @@ public class AuthController {
         return authService.login(request);
     }
 
-    @ExceptionHandler(org.springframework.security.authentication.BadCredentialsException.class)
-    public org.springframework.http.ResponseEntity<String> handleBadCredentials(
-            org.springframework.security.authentication.BadCredentialsException ex) {
-        return org.springframework.http.ResponseEntity
-                .status(org.springframework.http.HttpStatus.UNAUTHORIZED)
-                .body(ex.getMessage());
-    }
-
 }
