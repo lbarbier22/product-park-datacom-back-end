@@ -56,6 +56,17 @@ public class GlobalExceptionHandler {
         return buildResponse(HttpStatus.FORBIDDEN, "Accès refusé");
     }
 
+    @ExceptionHandler(org.springframework.web.method.annotation.MethodArgumentTypeMismatchException.class)
+    public ResponseEntity<Object> handleTypeMismatch(
+            org.springframework.web.method.annotation.MethodArgumentTypeMismatchException ex) {
+
+        String message = String.format(
+                "Valeur invalide pour le paramètre '%s' : '%s'",
+                ex.getName(), ex.getValue()
+        );
+        return buildResponse(HttpStatus.BAD_REQUEST, message);
+    }
+
     private ResponseEntity<Object> buildResponse(HttpStatus status, String message) {
         Map<String, Object> body = new LinkedHashMap<>();
         body.put("timestamp", LocalDateTime.now());

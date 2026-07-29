@@ -3,10 +3,13 @@ package com.productpark.datacom.controller;
 import com.productpark.datacom.dto.request.ProductRejectRequest;
 import com.productpark.datacom.dto.request.ProductStepRequest;
 import com.productpark.datacom.dto.response.ProductDetailResponse;
+import com.productpark.datacom.dto.response.ProductListResponse;
 import com.productpark.datacom.exception.ResourceNotFoundException;
 import com.productpark.datacom.mapper.ProductMapper;
 import com.productpark.datacom.model.entity.User;
+import com.productpark.datacom.model.enums.ProductStatus;
 import com.productpark.datacom.repository.UserRepository;
+import com.productpark.datacom.service.ProductService;
 import com.productpark.datacom.service.ProductWorkflowService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -14,11 +17,15 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+import java.util.Optional;
+
 @RestController
 @RequestMapping("/api/products")
 @RequiredArgsConstructor
 public class ProductController {
 
+    private final ProductService productService;
     private final ProductWorkflowService productWorkflowService;
     private final ProductMapper productMapper;
     private final UserRepository userRepository;
@@ -59,6 +66,16 @@ public class ProductController {
                                         @Valid @RequestBody ProductRejectRequest request) {
         var product = productWorkflowService.reject(id, request);
         return productMapper.toDetailResponse(product);
+    }
+
+    @GetMapping
+    public List<ProductListResponse> list(@RequestParam(value = "status", required = false) ProductStatus status) {
+        return productService.list(Optional.ofNullable(status));
+    }
+
+    @GetMapping("/{id}")
+    public ProductDetailResponse getDetail(@PathVariable("id") Long id) {
+        return productService.getDetail(id);
     }
 
 }
