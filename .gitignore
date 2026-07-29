@@ -26,3 +26,4 @@ replay_pid*
 /target/
 /src/main/resources/application-local.yml
 *.DS_Store
+/.env
