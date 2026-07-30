@@ -88,7 +88,6 @@ public class ProductWorkflowService {
             case 3 -> {
                 if (request.getLot() != null) product.setLot(request.getLot());
                 if (request.getCertification() != null) product.setCertification(request.getCertification());
-                if (request.getValidation() != null) product.setValidation(request.getValidation());
             }
             case 4 -> {
                 // Step de récapitulatif uniquement, aucun champ propre à modifier ici.

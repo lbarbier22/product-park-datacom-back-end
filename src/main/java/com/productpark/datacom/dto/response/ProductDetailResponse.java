@@ -25,7 +25,6 @@ public class ProductDetailResponse {
 
     private String lot;
     private String certification;
-    private String validation;
 
     private ProductStatus status;
     private Integer currentStep;

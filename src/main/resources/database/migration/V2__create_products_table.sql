@@ -12,7 +12,6 @@ CREATE TABLE products (
 
                           lot              VARCHAR(255),
                           certification    VARCHAR(255),
-                          validation       VARCHAR(1000),
 
                           status           VARCHAR(50) NOT NULL,
                           current_step     INTEGER     NOT NULL,

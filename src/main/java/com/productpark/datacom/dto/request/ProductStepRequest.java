@@ -40,7 +40,4 @@ public class ProductStepRequest {
     private String lot;
     private String certification;
 
-    @Size(max = 1000)
-    private String validation;
-
 }
