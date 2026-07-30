@@ -1,0 +1,3 @@
+INSERT INTO users (login, password, firstname, lastname, role) VALUES
+                                                                   ('admin', '$2b$10$T0HLQmESnzejSbnhjKpyDOEfijLGoWa.xFsbWCCKlcIUffY5e.dvq', 'Alice', 'Admin', 'ADMIN'),
+                                                                   ('validator', '$2b$10$GiwzmxWYsOXZyNpbX0Q4WuQZ3DA64Evg.XmLvDRlVPMt.bHDeod7m', 'Bob', 'Validator', 'VALIDATOR');
