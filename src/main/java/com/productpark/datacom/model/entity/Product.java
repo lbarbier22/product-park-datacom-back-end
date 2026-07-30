@@ -34,14 +34,6 @@ public class Product {
     private String lot;
     private String certification;
 
-    /**
-     * Champ hérité de l'existant ("Validation comment").
-     * Usage métier réel non identifié à ce stade (cf. specs fonctionnelles, point 7) :
-     * traité comme une note libre, sans logique métier attachée.
-     */
-    @Column(length = 1000)
-    private String validation;
-
     // --- Workflow ---
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
@@ -51,7 +43,7 @@ public class Product {
     private Integer currentStep = 1;
 
     /**
-     * Motif de refus saisi par le VALIDATOR (distinct du champ `validation`).
+     * Motif de refus saisi par le VALIDATOR.
      * Rempli uniquement quand status = REJECTED.
      */
     @Column(length = 1000)

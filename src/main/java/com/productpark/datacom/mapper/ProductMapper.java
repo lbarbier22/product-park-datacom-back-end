@@ -35,7 +35,6 @@ public class ProductMapper {
                 .country(product.getCountry())
                 .lot(product.getLot())
                 .certification(product.getCertification())
-                .validation(product.getValidation())
                 .status(product.getStatus())
                 .currentStep(product.getCurrentStep())
                 .rejectionReason(product.getRejectionReason())
