@@ -23,7 +23,7 @@ public class AuthService {
         User user = userRepository.findByLogin(request.getLogin())
                 .orElseThrow(() -> new BadCredentialsException("Identifiants incorrects"));
 
-        if (!passwordEncoder.matches(request.getPassword(), user.getPassword())) {
+        if (!passwordEncoder.matches(request.getPassword(), user.getPasswordHash())) {
             throw new BadCredentialsException("Identifiants incorrects");
         }
 

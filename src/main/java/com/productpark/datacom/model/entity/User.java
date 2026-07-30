@@ -5,6 +5,11 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.type.SqlTypes;
+
+import java.time.LocalDateTime;
+
 
 @Entity
 @Table(name = "users")
@@ -23,18 +28,27 @@ public class User {
     /**
      * Hash BCrypt, jamais le mot de passe en clair
      * (corrige le bug de l'existant : mot de passe en clair en base).
+     * Colonne renommée password -> password_hash en V4.
      */
-    @Column(nullable = false)
-    private String password;
+    @Column(name = "password_hash", nullable = false)
+    private String passwordHash;
 
-    @Column(nullable = false)
+    @Column(nullable = false, length = 100)
     private String firstname;
 
-    @Column(nullable = false)
+    @Column(nullable = false, length = 100)
     private String lastname;
 
+
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
+    @JdbcTypeCode(SqlTypes.NAMED_ENUM)
+    @Column(nullable = false, columnDefinition = "user_role")
     private Role role;
+
+    @Column(name = "is_active", nullable = false)
+    private boolean active = true;
+
+    @Column(name = "created_at", nullable = false, updatable = false)
+    private LocalDateTime createdAt;
 
 }

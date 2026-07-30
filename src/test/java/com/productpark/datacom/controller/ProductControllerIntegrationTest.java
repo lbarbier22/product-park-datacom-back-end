@@ -16,6 +16,10 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
+
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
@@ -57,11 +61,11 @@ class ProductControllerIntegrationTest {
         userRepository.deleteAll();
 
         User admin = userRepository.save(new User(null, "admin.test", passwordEncoder.encode("admin123"),
-                "Alice", "Admin", Role.ADMIN));
+                "Alice", "Admin", Role.ADMIN, true, LocalDateTime.of(2026,07,15, 0, 0)));
         User adminB = userRepository.save(new User(null, "adminB.test", passwordEncoder.encode("admin123"),
-                "Bob", "Admin", Role.ADMIN));
+                "Bob", "Admin", Role.ADMIN, true, LocalDateTime.of(2026,07,15, 0, 0)));
         userRepository.save(new User(null, "validator.test", passwordEncoder.encode("validator123"),
-                "Carol", "Validator", Role.VALIDATOR));
+                "Carol", "Validator", Role.VALIDATOR, true, LocalDateTime.of(2026,07,15, 0, 0)));
 
         adminToken = jwtTokenProvider.generateToken(admin.getLogin(), "ADMIN");
         adminBToken = jwtTokenProvider.generateToken(adminB.getLogin(), "ADMIN");

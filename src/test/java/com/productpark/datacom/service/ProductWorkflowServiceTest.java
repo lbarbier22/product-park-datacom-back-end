@@ -16,6 +16,8 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -38,8 +40,8 @@ class ProductWorkflowServiceTest {
 
     @BeforeEach
     void setUp() {
-        adminA = new User(1L, "adminA", "hash", "Alice", "A", Role.ADMIN);
-        adminB = new User(2L, "adminB", "hash", "Bob", "B", Role.ADMIN);
+        adminA = new User(1L, "adminA", "hash", "Alice", "A", Role.ADMIN, true, LocalDateTime.of(2026,07,15, 0, 0));
+        adminB = new User(2L, "adminB", "hash", "Bob", "B", Role.ADMIN, true, LocalDateTime.of(2026,07,15, 0, 0));
 
         // save() renvoie l'entité telle quelle (comportement par défaut simulé)
         lenient().when(productRepository.save(any(Product.class))).thenAnswer(inv -> inv.getArgument(0));
