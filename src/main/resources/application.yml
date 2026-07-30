@@ -13,6 +13,7 @@ spring:
   flyway:
     enabled: true
     locations: classpath:database/migration
+    baseline-on-migrate: true
 server:
   port: 8080
 datacom:
